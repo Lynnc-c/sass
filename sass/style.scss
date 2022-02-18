@@ -1,0 +1,96 @@
+@import 'layout/header';
+
+
+// 全域變數宣告 (需要寫在最上方) - 變數最好做好語意化
+$fontSize_basic : 16px;
+$font_color: #2c2b2b;
+$bgc : rgb(233, 233, 233);
+$null : null; // 空值
+$padding: 10px 10px 20px; //list
+$fontFamily:'Times New Roman', Times, serif;
+
+$btn_color :(
+    "error" :#f60b0b ,
+    "yellow" : #fcd810,
+    "green" : #6bf80d
+); //$map:( $key, value );
+
+body {
+    font-size: $fontSize_basic;
+    color: $font_color;
+    background-color: $bgc;
+    margin: $null;
+    padding: $padding;
+    font-family: $fontFamily;
+    // 若寫在{}中為區域變數，僅套用此{}範圍
+}
+
+.btn {
+    color: map-get($btn_color, "error");    //map-get取值
+}
+
+$x: 20;
+$y: 30;
+
+.list{
+    width: 10em + 10em; //運算單位須一致，否則會報錯
+    height: 10em - 1em;
+    margin: 10 * 10 + px;   //若兩數字都有單位不能做運算
+    //font:floor(20 / 16);   //注意有些語法本身會有/，因此需用()包住才能運算，如果兩個數字都有單位，是會被相除刪掉的，因此須注意
+    font:round($x / $y);    //floor ceil round //注意除法
+}
+
+$bg_color:red;
+.go{
+    @if $bg_color == red{
+        background-color: rgb(255, 80, 36);
+    }else{
+        background-color: #fff;
+    }
+}
+
+$width: 1200px;
+// $width: "full";
+.wrapper{
+    @if $width == "full"{
+        width: 100%;
+    }@else{
+        width: $width;
+        margin: 0 auto;
+    }
+}
+
+.header {
+    .logo {
+        width: 80px;
+        height: 80px;
+        background-color: rgb(221, 221, 221);
+    }
+    nav {
+        width: 100%;
+        ul {
+            list-style: none;
+            li {
+                padding: 0px 10px;
+                color: #4c65d3;
+            }
+        }
+    }
+}
+
+.main {
+    h1 {
+        font-size: 20px;
+        ul {
+            li {
+                color: rgb(255, 4, 4);
+            }
+        }
+    }
+}
+
+.about {
+    h1 {
+        font-size: 30px;
+    }
+}
